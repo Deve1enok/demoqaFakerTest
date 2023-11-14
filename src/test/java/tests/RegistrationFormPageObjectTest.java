@@ -1,15 +1,12 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.DataFakerUser;
+import utils.DataUser;
 import pages.RegistrationFormPage;
 
 public class RegistrationFormPageObjectTest extends BaseTest {
     RegistrationFormPage registrationPage = new RegistrationFormPage();
-    DataFakerUser fakerData = new DataFakerUser();
-
-
-
+    DataUser fakerData = new DataUser();
 
     @Test
     void registrationForm() {
@@ -23,32 +20,29 @@ public class RegistrationFormPageObjectTest extends BaseTest {
                 .setUserEmail(fakerData.userEmail)
                 .setGenderInput(fakerData.gender)
                 .setUserNumber(fakerData.number)
-                .setDateBirthday(fakerData.dayBirth, fakerData.monthBirth, fakerData.yearBirth)
+                .setDateBirthday(fakerData.randomDayOnMonth, fakerData.monthBirth, fakerData.yearBirth)
                 .setSubject(fakerData.subject)
                 .setHobbies(fakerData.hobbies)
-                .choosePicture("img/CssNEO.jpg")
+                .choosePicture(fakerData.pic)
                 .setAddress(fakerData.currentAddress)
                 .setState(fakerData.getState)
                 .setCity(fakerData.getCity)
                 .setSubmit()
 
-
-
-                .checkForm("Student Name", fakerData.firstName)
-                .checkForm("Student Name", fakerData.lastName)
-                .checkForm("Student Email",fakerData.userEmail)
-                .checkForm("Gender", fakerData.gender)
-                .checkForm("Mobile", fakerData.number)
-                .checkForm("Date of Birth", fakerData.dayBirth)
-                .checkForm("Date of Birth", fakerData.monthBirth)
-                .checkForm("Date of Birth", fakerData.yearBirth)
-                .checkForm("Subjects", fakerData.subject)
-                .checkForm("Hobbies", fakerData.hobbies)
-                .checkForm("Picture", "CssNEO.jpg")
-                .checkForm("Address", fakerData.currentAddress)
-                .checkForm("State and City", fakerData.getState)
-                .checkForm("State and City", fakerData.getCity);
-
+                .checkForm(fakerData.fieldStudentName, fakerData.firstName)
+                .checkForm(fakerData.fieldStudentName, fakerData.lastName)
+                .checkForm(fakerData.fieldStudentEmail,fakerData.userEmail)
+                .checkForm(fakerData.fieldGender, fakerData.gender)
+                .checkForm(fakerData.fieldNumber, fakerData.number)
+                .checkForm(fakerData.fieldDateOfBirth, fakerData.randomDayOnMonth)
+                .checkForm(fakerData.fieldDateOfBirth, fakerData.monthBirth)
+                .checkForm(fakerData.fieldDateOfBirth, fakerData.yearBirth)
+                .checkForm(fakerData.fieldSubjects, fakerData.subject)
+                .checkForm(fakerData.fieldHobbies, fakerData.hobbies)
+                .checkForm(fakerData.fieldPicture, fakerData.picCheck)
+                .checkForm(fakerData.fieldAddress, fakerData.currentAddress)
+                .checkForm(fakerData.fieldStateAndCity, fakerData.getState)
+                .checkForm(fakerData.fieldStateAndCity, fakerData.getCity);
     }
     @Test
     void minimalFieldsData() {
@@ -59,22 +53,24 @@ public class RegistrationFormPageObjectTest extends BaseTest {
                 .setUserNumber(fakerData.number)
                 .setSubmit()
 
-                .checkForm("Student Name", fakerData.minFirstName)
-                .checkForm("Student Name", fakerData.minLastName)
-                .checkForm("Gender", fakerData.gender)
-                .checkForm("Mobile", fakerData.number);
+                .checkForm(fakerData.fieldStudentName, fakerData.minFirstName)
+                .checkForm(fakerData.fieldStudentName, fakerData.minLastName)
+                .checkForm(fakerData.fieldGender, fakerData.gender)
+                .checkForm(fakerData.fieldNumber, fakerData.number);
 
     }
     @Test
     void negativeTestData() {
         registrationPage.openPage()
-                .setEmptyFirstName("")
                 .setLastName(fakerData.lastName)
                 .setGenderInput(fakerData.gender)
                 .setUserNumber(fakerData.number)
                 .setSubmit()
 
                 .checkNameInputIsEmptyAndRedBordered()
+                .checkLastNameField(fakerData.lastName)
+                .checkGenderField(fakerData.gender)
+                .checkNumberField(fakerData.number)
                 .checkTableNotAppeared();
     }
 }

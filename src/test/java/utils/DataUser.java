@@ -20,8 +20,9 @@ public class DataUser {
     public String subject = ruFaker.options().option("Math", "English", "Chemistry", "Physics", "Computer Science", "Economics", "Arts",
             "Social Studies", "History", "Civics", "Hindi", "Biology", "Accounting", "Commerce");
     public String hobbies = ruFaker.options().option("Sports", "Reading", "Music");
-    public String pic = enFaker.options().option("img/CssNEO.jpg");
-    public String picCheck = enFaker.options().option("CssNEO.jpg");
+    public String pic = "CssNEO.jpg";
+    public String picPath = "img/";
+    public String picWithPath = picPath + pic;
     public String currentAddress = ruFaker.address().fullAddress();
     public String getState = ruFaker.options().option("NCR", "Utta Pradesh", "Haryana", "Rajasthan");
     public String getCity = randomCity(getState);

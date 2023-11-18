@@ -23,7 +23,7 @@ public class RegistrationFormPageObjectTest extends BaseTest {
                 .setDateBirthday(fakerData.randomDayOnMonth, fakerData.monthBirth, fakerData.yearBirth)
                 .setSubject(fakerData.subject)
                 .setHobbies(fakerData.hobbies)
-                .choosePicture(fakerData.pic)
+                .choosePicture(fakerData.picWithPath)
                 .setAddress(fakerData.currentAddress)
                 .setState(fakerData.getState)
                 .setCity(fakerData.getCity)
@@ -39,7 +39,7 @@ public class RegistrationFormPageObjectTest extends BaseTest {
                 .checkForm(fakerData.fieldDateOfBirth, fakerData.yearBirth)
                 .checkForm(fakerData.fieldSubjects, fakerData.subject)
                 .checkForm(fakerData.fieldHobbies, fakerData.hobbies)
-                .checkForm(fakerData.fieldPicture, fakerData.picCheck)
+                .checkForm(fakerData.fieldPicture, fakerData.pic)
                 .checkForm(fakerData.fieldAddress, fakerData.currentAddress)
                 .checkForm(fakerData.fieldStateAndCity, fakerData.getState)
                 .checkForm(fakerData.fieldStateAndCity, fakerData.getCity);
